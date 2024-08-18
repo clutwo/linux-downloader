@@ -104,8 +104,8 @@ checkfile $1
 }
 
 endeavoururl () {
-mirror="https://sourceforge.net/projects/endeavouros-repository/files/latest/download"
-new="$mirror"
+mirror="https://endeavouros.com/#Download"
+new="$( mech-dump --links --absolute --agent-alias='Linux Mozilla' $mirror | grep 'EndeavourOS_Endeavour.*iso' | grep -wv 'sha512sum\|torrent\|sig\|magnet' | sed -n \$p)"
 output_path "endeavour.iso"
 checkfile $1
 }
