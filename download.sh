@@ -233,7 +233,7 @@ normalmode () {
 		read z
 		if [ $z = "y" ]; then $"${arr[3]}"; fi
 
-		if [ "$qemu" = "1"]; then
+		if [ "$qemu" = "1" ]; then
 			echo "${arr[0]} downloaded, do you want to spin up the QEMU? (y / n)"
 			read z
 		else
