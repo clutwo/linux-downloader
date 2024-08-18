@@ -275,6 +275,7 @@ normalmode () {
 			for distr in $x; do 
 				dist=${distro_arr[$distr]}
 				typeset -n arr=$dist
+				echo $arr
 				$"${arr[3]}"
 			done
 		#done
