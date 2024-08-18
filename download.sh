@@ -232,9 +232,15 @@ normalmode () {
 		echo "You choose ${arr[0]} distro ${arr[2]}, built for ${arr[1]} arch. Do you want to download ${arr[0]} ISO? (y / n)"
 		read z
 		if [ $z = "y" ]; then $"${arr[3]}"; fi
-		echo "${arr[0]} downloaded, do you want to spin up the QEMU? (y / n)"
-		read z
-	
+
+		if [ "$qemu" = "1"]; then
+			echo "${arr[0]} downloaded, do you want to spin up the QEMU? (y / n)"
+			read z
+		else
+			z = "n"
+		fi
+
+		
 		if [ $z = "y" ]; then
 			isoname="$(echo ${arr[0]} | awk '{print tolower($0)}').iso"
 			if ! type $cmd > /dev/null 2>&1; then
@@ -313,7 +319,7 @@ quickmode () {
 	exit 0;
 }
 
-VALID_ARGS=$(getopt -o hysod: --long help,noconfirm,silent,output_dir,distro: -- "$@")
+VALID_ARGS=$(getopt -o hysod: --long help,noconfirm,qemu,silent,output_dir,distro: -- "$@")
 if [[ $? -ne 0 ]]; then
     exit 1;
 fi
@@ -326,10 +332,16 @@ while [ : ]; do
         echo "Valid command line flags:"
 		echo "-h/--help: Show this help"
         echo "-y/--noconfirm: Download specified distro without confirmation. "
+		echo "-q/--qemu: Script will ask to spinup a vm after download"
         echo "-s/--silent: Don't show help or extra info."
         echo "-o/--output_dir: Path where the downloaded files will be stored."
         echo "-d/--distro: Download distributions specified in the comma-separated list. Example: 0,2,34"
         exit 0;
+        ;;
+	-q | --qemu)
+        echo "-q/--qemu option specified. Script will ask to spinup a vm after download"
+        qemu=1
+        shift
         ;;
     -y | --noconfirm)
         echo "-y/--noconfirm option specified. Script will download specified distro without confirmation."

@@ -15,13 +15,13 @@ Bash script for autodownloading of different latest, "bleeding edge" Linux distr
 
 ## Requirements: 
 * Basic stuff: `linux`, `bash`, `curl`, `wget`, `awk`, `grep`, `xargs`, `pr` (these tools usually are preinstalled on linux)
-* Additional depencency: `html2text` (for PopOS, Fedora, Rosa, Alma, Rocky, Adelie), `aria2` (for PopOS)
+* Additional depencency: `libwww-mechanize-perl` `html2text` (for PopOS, Fedora, Rosa, Alma, Rocky, Adelie), `aria2` (for PopOS)
 * If you want to run a VM after downloading, you'll need `QEMU`
 * Some distros are shared as archive. So you'll need `xz` for guix, `bzip2` for minix, `zip` for haiku & reactos, and, finally `7z` for kolibri.
 ### Install all deps on Arch-based distro
-`sudo pacman -S html2text aria2 p7zip xz bzip2 qemu`
+`sudo pacman -S html2text aria2 p7zip xz bzip2 qemu perl-www-mechanize`
 ### Install all deps on Debian based distro
-`sudo ap-get install html2text aria2 p7zip xz-utils bzip2 qemu`
+`sudo ap-get install html2text aria2 p7zip xz-utils bzip2 qemu libwww-mechanize-perl`
 
 ## Currently supported distributions
 If you can't find your favourite linux distro in here, please create a github issue with details about it or add support for it yourself and do a pull request.
