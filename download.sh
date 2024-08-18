@@ -237,10 +237,10 @@ normalmode () {
 			echo "${arr[0]} downloaded, do you want to spin up the QEMU? (y / n)"
 			read z
 		else
-			z = "n"
+			z="n"
 		fi
 
-		
+
 		if [ $z = "y" ]; then
 			isoname="$(echo ${arr[0]} | awk '{print tolower($0)}').iso"
 			if ! type $cmd > /dev/null 2>&1; then
