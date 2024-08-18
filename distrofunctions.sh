@@ -74,8 +74,8 @@ checkfile $1
 }
 
 manjarourl () {
-mirror="https://manjaro.org/download/"
-x=$(curl -s $mirror | grep btn-fi | grep xfce | awk -F"\"" '{ print $4 }')
+mirror="https://manjaro.org/products/download/x86"
+x=$(mech-dump --links --absolute --agent-alias='Linux Mozilla' $mirror | grep '.*iso' | grep 'kde')
 new="$x"
 output_path "manjaro.iso"
 checkfile $1
