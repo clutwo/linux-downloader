@@ -319,7 +319,7 @@ quickmode () {
 	exit 0;
 }
 
-VALID_ARGS=$(getopt -o hysod: --long help,noconfirm,qemu,silent,output_dir,distro: -- "$@")
+VALID_ARGS=$(getopt -o hyqso:d: --long help,noconfirm,qemu,silent,output_dir:,distro: -- "$@")
 if [[ $? -ne 0 ]]; then
     exit 1;
 fi
@@ -354,9 +354,9 @@ while [ : ]; do
         shift
         ;;
 	-o | --output_dir)
-        echo "-o/--output_dir option specified. The images will be downloaded in \"$3\"."
-        output_dir=$3
-        shift
+        echo "-o/--output_dir option specified. The images will be downloaded in \"$2\"."
+        output_dir=$2
+        shift 2
         ;;
     -d | --distro)
         echo "-d/--distro option specified. Script will download distributions with the following numbers: '$2'"
