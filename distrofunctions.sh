@@ -263,7 +263,7 @@ checkfile $1
 
 kaliurl () {
 mirror="http://cdimage.kali.org/kali-weekly/"
-x=$(curl -s $mirror | grep -m1 live-amd64.iso | awk -F">" '{ print $7 }' | awk -F"<" '{ print $1 }')
+x=$(curl -s $mirror | grep -m1 live-amd64.iso | awk -F">" '{ print $4 }' | awk -F"<" '{ print $1 }')
 new="$mirror/$x"
 output_path "kali.iso"
 checkfile $1
